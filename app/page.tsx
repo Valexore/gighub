@@ -2,7 +2,9 @@
 import React from "react";
 import ImageCard from "../components/landingpage/ImageCard";
 import Button from "../components/landingpage/Button";
+import Image from "next/image";
 import Link from "next/link";
+import { rocaTwo } from './fonts'
 
 function LandingPage() {
   // Services data
@@ -78,11 +80,13 @@ function LandingPage() {
           <div className="flex justify-between items-center h-16">
             {/* Logo with enhanced styling */}
             <div className="shrink-0 flex items-center">
-              <div className="flex items-center space-x-2 group cursor-pointer">
-                <div className="w-8 h-8 bg-linear-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-white font-bold text-sm">G</span>
-                </div>
-                <h1 className="text-2xl font-bold text-white">GigDaddy</h1>
+              <div className="group cursor-pointer">
+                <Image
+                  src="/gigdaddy-logo.png"   
+                  alt="Logo"
+                  height={150}
+                  width={150}
+                />
               </div>
             </div>
 
