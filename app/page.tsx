@@ -1,12 +1,19 @@
 // app/page.tsx
+
+"use client"
 import React from "react";
 import ImageCard from "../components/landingpage/ImageCard";
 import Button from "../components/landingpage/Button";
 import Image from "next/image";
 import Link from "next/link";
 import { rocaTwo } from './fonts'
+import {useRouter} from 'next/navigation';
 
 function LandingPage() {
+  const router = useRouter();
+  const handleApplyClick = () => {
+    router.push('/registration');
+  }
   // Services data
   const services = [
     {
@@ -173,15 +180,16 @@ function LandingPage() {
                 growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link href="/Selection">
+
                   <Button
                     variant="success"
                     size="lg"
+                    onClick={handleApplyClick}
                     className="bg-green-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                   >
                     Apply Today
                   </Button>
-                </Link>
+
                 <Button
                   variant="outline"
                   size="lg"
