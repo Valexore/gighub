@@ -3,7 +3,7 @@ import React from 'react';
 
 interface CardHeaderProps {
   title: string;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
   action?: React.ReactNode;
   className?: string;
   titleClassName?: string;
@@ -33,9 +33,9 @@ function CardHeader({
           {title}
         </h3>
         {subtitle && (
-          <p className={`text-sm text-gray-500 mt-1 ${subtitleClassName}`}>
+          <div className={`text-sm text-gray-500 mt-1 ${subtitleClassName}`}>
             {subtitle}
-          </p>
+          </div>
         )}
       </div>
       {action && (

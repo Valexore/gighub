@@ -8,13 +8,12 @@ interface ImageCardProps {
   imageUrl: string;
   imageAlt?: string;
   title: string;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
+  location?: string;
   description?: string;
   action?: React.ReactNode;
   className?: string;
-  // Fixed card size options
   size?: 'sm' | 'md' | 'lg' | 'xl';
-  // Image fitting options
   imageFit?: 'cover' | 'contain';
   onClick?: () => void;
 }
@@ -25,6 +24,7 @@ function ImageCard({
   title,
   subtitle,
   description,
+  location,
   action,
   className = '',
   size = 'md',
