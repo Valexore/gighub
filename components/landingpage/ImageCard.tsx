@@ -9,6 +9,7 @@ interface ImageCardProps {
   title: string;
   subtitle?: React.ReactNode;
   description?: string;
+  location?: React.ReactNode;
   action?: React.ReactNode;
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
@@ -22,6 +23,7 @@ function ImageCard({
   title,
   subtitle,
   description,
+  location,
   action,
   className = '',
   size = 'md',
