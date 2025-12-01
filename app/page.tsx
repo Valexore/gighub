@@ -133,16 +133,16 @@ function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-green-200">
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+            <div className="inline-flex items-center gap-2 bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-primary-200">
+              <span className="w-2 h-2 bg-primary-500 rounded-full"></span>
               Open Positions
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-linear-to-r from-gray-900 to-green-600 bg-clip-text">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-linear-to-r from-gray-900 to-primary-600 bg-clip-text">
               Find Your Perfect Role
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Discover opportunities that match your skills and passion.
-              <span className="text-green-600 font-semibold">
+              <span className="text-primary-600 font-semibold">
                 {" "}
                 {services.length} positions{" "}
                 {/* Dependes how many srvices are active */}
@@ -163,12 +163,12 @@ function LandingPage() {
                 description={service.description}
                 size="md"
                 imageFit="cover"
-                className="hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-green-200"
+                className="hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-primary-200"
                 action={
                   <Button
                     variant="success"
                     size="sm"
-                    className="bg-green-500 hover:bg-green-600 text-white"
+                    className="bg-primary-500 hover:bg-primary-600 text-white"
                   >
                     Apply Now
                   </Button>

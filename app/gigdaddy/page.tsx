@@ -5,6 +5,7 @@ import ImageCard from "../../components/landingpage/ImageCard";
 import Button from "../../components/landingpage/Button";
 import Input from "../../components/landingpage/Input";
 import router from "next/router";
+import Head from "next/head";
 
 // Updated services data with salary and category
 const services = [
@@ -141,11 +142,11 @@ function EmployeeDashboard() {
   const createSubtitle = (service: any) => {
     return (
       <div className="flex flex-col gap-1">
-        <span className="text-green-600 font-semibold text-sm">
+        <span className="text-primary-600 font-semibold text-sm">
           {service.salary}
         </span>
         <span className="text-gray-500 text-xs">{service.subtitle}</span>
-        <span className="text-blue-600 text-xs bg-blue-50 px-2 py-1 rounded-full inline-block mt-1">
+        <span className="text-primary-600 text-xs bg-primary-50 px-2 py-1 rounded-full mt-1 inline-block">
           {service.category}
         </span>
       </div>
@@ -154,22 +155,22 @@ function EmployeeDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      {/* Left Side Navigation - Sticky with Enhanced Design */}
-      <div className="w-64 bg-linear-to-b from-green-50 to-white shadow-xl border-r border-gray-200 flex flex-col sticky top-0 h-screen">
+      {/* Sidebar: hidden on mobile, visible on md+ */}
+      <div className="w-64 bg-linear-to-b from-primary-50 to-white shadow-xl border-r border-gray-200 flex-col sticky top-0 h-screen hidden md:flex">
         {/* Enhanced Logo Section */}
-        <div className="p-6 border-b border-green-100 bg-white">
+        <div className="p-6 border-b border-primary-100 bg-white">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-linear-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">W</span>
-            </div>
             <div>
-              <h1 className="text-xl font-bold text-green-700">WorkHub</h1>
-              <p className="text-xs text-gray-500">Employee Dashboard</p>
+              <img src="/gigdaddy-logo2.png" alt="Gigdaddy Logo" className="w-64 h-16" />
             </div>
           </div>
         </div>
 
         {/* Enhanced Navigation Menu */}
+        {/* Remix Icon CDN Head */}
+        <Head>
+          <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+        </Head>
         <nav className="flex-1 p-4">
           <div className="mb-6">
             <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">
@@ -179,53 +180,45 @@ function EmployeeDashboard() {
               <li>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-3 text-green-700 bg-green-50 rounded-lg border border-green-200 shadow-sm"
+                  className="flex items-center px-4 py-3 text-primary-700 bg-primary-50 rounded-lg border border-primary-200 shadow-sm"
                 >
-                  <span className="mr-3 text-lg">🏠</span>
+                  <i className="ri-home-2-line mr-3 text-lg"></i>
                   <span className="font-semibold">Dashboard</span>
                 </a>
               </li>
               <li>
                 <div
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
                   onClick={() => router.push("/gigdaddy/myjobs")}
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform">
-                    💼
-                  </span>
+                  <i className="ri-briefcase-line mr-3 text-lg group-hover:scale-110 transition-transform"></i>
                   <span>My Jobs</span>
                 </div>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform">
-                    📊
-                  </span>
+                  <i className="ri-file-list-2-line mr-3 text-lg group-hover:scale-110 transition-transform"></i>
                   <span>Applications</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform">
-                    💰
-                  </span>
+                  <i className="ri-money-dollar-circle-line mr-3 text-lg group-hover:scale-110 transition-transform"></i>
                   <span>Earnings</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform">
-                    💬
-                  </span>
+                  <i className="ri-message-2-line mr-3 text-lg group-hover:scale-110 transition-transform"></i>
                   <span>Message</span>
                 </a>
               </li>
@@ -240,11 +233,9 @@ function EmployeeDashboard() {
               <li>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform">
-                    ⚙️
-                  </span>
+                  <i className="ri-settings-3-line mr-3 text-lg group-hover:scale-110 transition-transform"></i>
                   <span>Settings</span>
                 </a>
               </li>
@@ -253,9 +244,9 @@ function EmployeeDashboard() {
         </nav>
 
         {/* Enhanced User Profile Section */}
-        <div className="p-4 border-t border-green-100 bg-white">
-          <div className="flex items-center space-x-3 p-3 bg-linear-to-r from-green-50 to-blue-50 rounded-lg border border-green-100">
-            <div className="w-12 h-12 bg-linear-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center shadow-md">
+        <div className="p-4 border-t border-primary-100 bg-white">
+          <div className="flex items-center space-x-3 p-3 bg-linear-to-r from-primary-50 to-blue-50 rounded-lg border border-primary-100">
+            <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center shadow-md">
               <span className="text-white font-semibold text-sm">
                 {user.name
                   .split(" ")
@@ -267,7 +258,7 @@ function EmployeeDashboard() {
               <p className="text-sm font-semibold text-gray-900 truncate">
                 {user.name}
               </p>
-              <p className="text-xs text-green-600 font-medium">
+              <p className="text-xs text-primary-600 font-medium">
                 Balance: {user.balance}
               </p>
             </div>
@@ -278,6 +269,17 @@ function EmployeeDashboard() {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Header */}
+           {/* Mobile header */}
+          <div className="flex md:hidden items-center justify-between px-4 py-3">
+            <div className="flex items-center gap-2">
+              <img src="/gigdaddy-logo2.png" alt="Gigdaddy Logo" className="h-10 w-auto" />
+            </div>
+            <div className="w-9 h-9 bg-primary-600 rounded-full flex items-center justify-center shadow-md">
+              <span className="text-white font-semibold text-sm">
+                {user.name.split(" ").map((n) => n[0]).join("")}
+              </span>
+            </div>
+          </div>
         <header className="bg-white shadow-sm border-b border-gray-200">
           <div className="flex justify-between items-center px-8 py-4">
             <div>
@@ -304,11 +306,11 @@ function EmployeeDashboard() {
         <main className="flex-1 overflow-y-auto p-8">
           {/* Welcome Section - Preserved as requested */}
           <section className="mb-8">
-            <div className="bg-gradient-to-r from-green-500 to-blue-600 rounded-2xl p-8 text-white shadow-lg">
+            <div className="bg-primary-600 rounded-2xl p-8 text-white shadow-lg">
               <h2 className="text-3xl font-bold mb-2">
                 Welcome back, {user.name}!
               </h2>
-              <p className="text-green-100 mb-4">
+              <p className="text-primary-100 mb-4">
                 Ready to find your next job opportunity?
               </p>
               <Button
@@ -332,25 +334,11 @@ function EmployeeDashboard() {
               <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
                 {/* Search Input */}
                 <div className="text-black flex-1 min-w-[200px]">
-                  <Input
-                    placeholder="Search jobs..."
-                    value={searchTerm}
-                    onChange={setSearchTerm}
-                    icon={
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                    }
+                    <Input
+                      placeholder="Search jobs..."
+                      value={searchTerm}
+                      onChange={setSearchTerm}
+                      icon={<i className="ri-search-line text-lg text-gray-400"></i>}
                   />
                 </div>
 
@@ -432,8 +420,8 @@ function EmployeeDashboard() {
             <div className="space-y-4">
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                    <span className="text-green-600">✓</span>
+                  <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center mr-3">
+                    <i className="ri-checkbox-circle-line text-primary-600"></i>
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">
@@ -444,14 +432,15 @@ function EmployeeDashboard() {
                     </p>
                   </div>
                 </div>
-                <span className="text-green-600 font-medium">+₱500</span>
+                <span className="text-primary-600 font-medium">+₱500</span>
               </div>
 
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                    <span className="text-blue-600">⏰</span>
+                  <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center mr-3">
+                    <i className="ri-time-line text-blue-600"></i>
                   </div>
+                                  <div className="text-gray-400 text-6xl mb-4"><i className="ri-search-eye-line"></i></div>
                   <div>
                     <p className="font-medium text-gray-900">
                       New Lawn Care Job Available
@@ -467,83 +456,60 @@ function EmployeeDashboard() {
           </section>
         </main>
 
-        {/* Footer */}
-        <footer className="bg-gray-800 text-white py-6">
-          <div className="max-w-7xl mx-auto px-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div>
-                <h3 className="text-lg font-bold mb-4">WorkHub</h3>
-                <p className="text-gray-400">
-                  Connecting skilled workers with local job opportunities.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">For Workers</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Find Jobs
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Applications
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Support</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Help Center
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Contact Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Safety Tips
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Company</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      About Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Careers
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Terms of Service
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-              <p>&copy; 2024 WorkHub. All rights reserved.</p>
-            </div>
-          </div>
-        </footer>
       </div>
+      {/* Bottom Navigation Bar (Mobile Only) */}
+<div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t shadow-md">
+  <div className="flex justify-around py-3 text-gray-600">
+
+    {/* Dashboard */}
+    <button
+      className="flex flex-col items-center text-sm text-primary-600"
+      onClick={() => router.push("/gigdaddy/dashboard")}
+    >
+      <i className="ri-home-4-line text-2xl"></i>
+      <span className="text-xs">Home</span>
+    </button>
+
+    {/* My Jobs */}
+    <button
+      className="flex flex-col items-center text-sm"
+      onClick={() => router.push("/gigdaddy/myjobs")}
+    >
+      <i className="ri-briefcase-line text-2xl"></i>
+      <span className="text-xs">My Jobs</span>
+    </button>
+
+    {/* Applications */}
+    <button
+      className="flex flex-col items-center text-sm"
+      onClick={() => router.push("/gigdaddy/applications")}
+    >
+      <i className="ri-file-list-3-line text-2xl"></i>
+      <span className="text-xs">Apply</span>
+    </button>
+
+   
+
+    {/* Earnings */}
+    <button
+      className="flex flex-col items-center text-sm"
+      onClick={() => router.push("/gigdaddy/profile")}
+    >
+      <i className="ri-money-dollar-circle-line text-2xl"></i>
+      <span className="text-xs">Earnings</span>
+    </button>
+
+     {/* Messages */}
+    <button
+      className="flex flex-col items-center text-sm"
+      onClick={() => router.push("/gigdaddy/messages")}
+    >
+      <i className="ri-message-2-line text-2xl"></i>
+      <span className="text-xs">Messages</span>
+    </button>
+  </div>
+</div>
+
     </div>
   );
 }

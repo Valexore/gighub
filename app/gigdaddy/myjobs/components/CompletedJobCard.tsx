@@ -27,7 +27,7 @@ interface CompletedJobCardProps {
 function CompletedJobCard({ job, onViewDetails }: CompletedJobCardProps) {
   return (
     <Card 
-      className="w-full max-w-sm hover:shadow-lg transition-all duration-300 cursor-pointer border-l-4 border-l-green-500"
+      className="w-full max-w-sm hover:shadow-lg transition-all duration-300 cursor-pointer border-l-4 border-l-primary-500"
       hover
       onClick={() => onViewDetails(job)}
     >
@@ -38,8 +38,8 @@ function CompletedJobCard({ job, onViewDetails }: CompletedJobCardProps) {
           alt={job.title}
           className="w-full h-40 object-cover rounded-t-lg"
         />
-        <div className="absolute top-3 right-3 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-          ✅ Completed
+        <div className="absolute top-3 right-3 bg-primary-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+           <i className="ri-checkbox-circle-line mr-1"></i> Completed
         </div>
       </div>
 
@@ -50,14 +50,15 @@ function CompletedJobCard({ job, onViewDetails }: CompletedJobCardProps) {
           subtitle={
             <div className="flex flex-col gap-2 mt-2">
               <div className="flex justify-between items-center">
-                <span className="text-green-600 font-bold text-lg">{job.earnings}</span>
+                <span className="text-primary-600 font-bold text-lg">{job.earnings}</span>
                 <div className="flex items-center text-yellow-500">
-                  {'★'.repeat(job.rating)}{'☆'.repeat(5 - job.rating)}
+                  {[...Array(job.rating)].map((_, i) => <i key={i} className="ri-star-fill"></i>)}
+                  {[...Array(5 - job.rating)].map((_, i) => <i key={i} className="ri-star-line"></i>)}
                 </div>
               </div>
               <span className="text-gray-600 text-sm">{job.subtitle}</span>
               <div className="flex items-center justify-between">
-                <span className="text-blue-600 text-xs bg-blue-50 px-2 py-1 rounded-full">
+                <span className="text-blue-600 text-xs bg-primary-50 px-2 py-1 rounded-full">
                   {job.category}
                 </span>
                 <span className="text-gray-400 text-xs">
@@ -74,10 +75,10 @@ function CompletedJobCard({ job, onViewDetails }: CompletedJobCardProps) {
         </p>
 
         {/* Earnings and Completion Info */}
-        <div className="bg-green-50 rounded-lg p-3 mb-4">
+        <div className="bg-primary-50 rounded-lg p-3 mb-4">
           <div className="flex justify-between items-center text-sm">
-            <span className="text-green-800 font-semibold">Earnings:</span>
-            <span className="text-green-600 font-bold">{job.earnings}</span>
+            <span className="text-primary-800 font-semibold">Earnings:</span>
+            <span className="text-primary-600 font-bold">{job.earnings}</span>
           </div>
           <div className="flex justify-between items-center text-sm mt-1">
             <span className="text-gray-600">Completed:</span>
@@ -86,7 +87,7 @@ function CompletedJobCard({ job, onViewDetails }: CompletedJobCardProps) {
         </div>
 
         <div className="flex items-center text-gray-500 text-sm">
-          <span className="mr-2">📍</span>
+           <i className="ri-map-pin-line mr-2"></i>
           {job.location}
         </div>
       </div>

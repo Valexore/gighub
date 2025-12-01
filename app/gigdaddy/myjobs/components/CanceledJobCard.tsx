@@ -38,7 +38,7 @@ function CanceledJobCard({ job, onViewDetails }: CanceledJobCardProps) {
           className="w-full h-40 object-cover rounded-t-lg grayscale"
         />
         <div className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-          ❌ Canceled
+           <i className="ri-close-circle-line mr-1"></i> Canceled
         </div>
       </div>
 
@@ -51,7 +51,7 @@ function CanceledJobCard({ job, onViewDetails }: CanceledJobCardProps) {
               <span className="text-gray-500 line-through font-bold text-lg">{job.salary}</span>
               <span className="text-gray-600 text-sm">{job.subtitle}</span>
               <div className="flex items-center justify-between">
-                <span className="text-blue-600 text-xs bg-blue-50 px-2 py-1 rounded-full">
+                <span className="text-blue-600 text-xs bg-primary-50 px-2 py-1 rounded-full">
                   {job.category}
                 </span>
                 <span className="text-gray-400 text-xs">
@@ -80,7 +80,7 @@ function CanceledJobCard({ job, onViewDetails }: CanceledJobCardProps) {
         </div>
 
         <div className="flex items-center text-gray-500 text-sm">
-          <span className="mr-2">📍</span>
+           <i className="ri-map-pin-line mr-2"></i>
           {job.location}
         </div>
       </div>

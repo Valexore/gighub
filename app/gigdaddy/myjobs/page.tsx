@@ -9,6 +9,7 @@ import SavedJobCard from "./components/SavedJobCard";
 import ActiveJobCard from "./components/ActiveJobCard";
 import CompletedJobCard from "./components/CompletedJobCard";
 import CanceledJobCard from "./components/CanceledJobCard";
+import Head from "next/head";
 
 // Define specific TypeScript interfaces for each job type
 interface BaseJob {
@@ -311,22 +312,21 @@ function MyJobsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      {/* Left Side Navigation - Same as EmployeeDashboard */}
-      <div className="w-64 bg-linear-to-b from-green-50 to-white shadow-xl border-r border-gray-200 flex flex-col sticky top-0 h-screen">
+      {/* Sidebar: hidden on mobile, visible on md+ */}
+      <div className="w-64 bg-linear-to-b from-primary-50 to-white shadow-xl border-r border-gray-200 flex-col sticky top-0 h-screen hidden md:flex">
         {/* Enhanced Logo Section */}
-        <div className="p-6 border-b border-green-100 bg-white">
+        <div className="p-6 border-b border-primary-100 bg-white">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-linear-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">W</span>
-            </div>
             <div>
-              <h1 className="text-xl font-bold text-green-700">WorkHub</h1>
-              <p className="text-xs text-gray-500">Employee Dashboard</p>
+              <img src="/gigdaddy-logo2.png" alt="Gigdaddy Logo" className="w-64 h-16" />
             </div>
           </div>
         </div>
 
         {/* Enhanced Navigation Menu */}
+        <Head>
+          <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+        </Head>
         <nav className="flex-1 p-4">
           <div className="mb-6">
             <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">
@@ -335,49 +335,43 @@ function MyJobsPage() {
             <ul className="space-y-1">
               <li>
                 <div
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group cursor-pointer"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group cursor-pointer"
                   onClick={() => router.push("/gigdaddy")}
                 >
-                  <span className="mr-3 text-lg">🏠</span>
+                  <i className="ri-home-2-line mr-3 text-lg"></i>
                   <span>Dashboard</span>
                 </div>
               </li>
               <li>
-                <div className="flex items-center px-4 py-3 text-green-700 bg-green-50 rounded-lg border border-green-200 shadow-sm cursor-pointer">
-                  <span className="mr-3 text-lg">💼</span>
+                <div className="flex items-center px-4 py-3 text-primary-700 bg-primary-50 rounded-lg border border-primary-200 shadow-sm cursor-pointer">
+                  <i className="ri-briefcase-line mr-3 text-lg"></i>
                   <span className="font-semibold">My Jobs</span>
                 </div>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform">
-                    📊
-                  </span>
+                  <i className="ri-file-list-2-line mr-3 text-lg group-hover:scale-110 transition-transform"></i>
                   <span>Applications</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform">
-                    💰
-                  </span>
+                  <i className="ri-money-dollar-circle-line mr-3 text-lg group-hover:scale-110 transition-transform"></i>
                   <span>Earnings</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform">
-                    💬
-                  </span>
+                  <i className="ri-message-2-line mr-3 text-lg group-hover:scale-110 transition-transform"></i>
                   <span>Message</span>
                 </a>
               </li>
@@ -392,11 +386,9 @@ function MyJobsPage() {
               <li>
                 <a
                   href="#"
-                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-green-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-gray-600 hover:bg-white hover:text-primary-600 hover:shadow-sm rounded-lg transition-all duration-200 group"
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform">
-                    ⚙️
-                  </span>
+                  <i className="ri-settings-3-line mr-3 text-lg group-hover:scale-110 transition-transform"></i>
                   <span>Settings</span>
                 </a>
               </li>
@@ -405,9 +397,9 @@ function MyJobsPage() {
         </nav>
 
         {/* Enhanced User Profile Section */}
-        <div className="p-4 border-t border-green-100 bg-white">
-          <div className="flex items-center space-x-3 p-3 bg-linear-to-r from-green-50 to-blue-50 rounded-lg border border-green-100">
-            <div className="w-12 h-12 bg-linear-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center shadow-md">
+        <div className="p-4 border-t border-primary-100 bg-white">
+          <div className="flex items-center space-x-3 p-3 bg-linear-to-r from-primary-50 to-blue-50 rounded-lg border border-primary-100">
+            <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center shadow-md">
               <span className="text-white font-semibold text-sm">
                 {user.name
                   .split(" ")
@@ -419,7 +411,7 @@ function MyJobsPage() {
               <p className="text-sm font-semibold text-gray-900 truncate">
                 {user.name}
               </p>
-              <p className="text-xs text-green-600 font-medium">
+              <p className="text-xs text-primary-600 font-medium">
                 Balance: {user.balance}
               </p>
             </div>
@@ -429,9 +421,10 @@ function MyJobsPage() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Header */}
+        {/* Responsive Header */}
         <header className="bg-white shadow-sm border-b border-gray-200">
-          <div className="flex justify-between items-center px-8 py-4">
+          {/* Desktop header */}
+          <div className="hidden md:flex justify-between items-center px-8 py-4">
             <div>
               <h2 className="text-lg font-semibold text-gray-900">
                 My Jobs Management
@@ -444,6 +437,23 @@ function MyJobsPage() {
               <Button variant="primary" size="sm" onClick={handleHelpClick}>
                 Help
               </Button>
+              {/* Profile avatar */}
+              <div className="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center shadow-md">
+                <span className="text-white font-semibold text-sm">
+                  {user.name.split(" ").map((n) => n[0]).join("")}
+                </span>
+              </div>
+            </div>
+          </div>
+          {/* Mobile header */}
+          <div className="flex md:hidden items-center justify-between px-4 py-3">
+            <div className="flex items-center gap-2">
+              <img src="/gigdaddy-logo2.png" alt="Gigdaddy Logo" className="h-10 w-auto" />
+            </div>
+            <div className="w-9 h-9 bg-primary-600 rounded-full flex items-center justify-center shadow-md">
+              <span className="text-white font-semibold text-sm">
+                {user.name.split(" ").map((n) => n[0]).join("")}
+              </span>
             </div>
           </div>
         </header>
@@ -482,8 +492,8 @@ function MyJobsPage() {
                     onClick={() => setActiveTab(tab.key)}
                     className={`flex-1 py-4 px-6 text-center font-medium transition-colors duration-200 ${
                       activeTab === tab.key
-                        ? "text-green-600 border-b-2 border-green-600 bg-green-50"
-                        : "text-gray-600 hover:text-green-600 hover:bg-gray-50"
+                        ? "text-primary-600 border-b-2 border-primary-600 bg-primary-50"
+                        : "text-gray-600 hover:text-primary-600 hover:bg-gray-50"
                     }`}
                   >
                     {tab.label}
@@ -497,7 +507,8 @@ function MyJobsPage() {
 
             {/* Search and Filter Controls */}
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-6 gap-4">
-              <h2 className="text-2xl font-bold text-gray-900">
+              {/* Section label only on desktop */}
+              <h2 className="hidden md:block text-2xl font-bold text-gray-900">
                 {activeTab === "saved" && "Your Saved Jobs"}
                 {activeTab === "active" && "Active Jobs"}
                 {activeTab === "completed" && "Completed Jobs"}
@@ -511,21 +522,7 @@ function MyJobsPage() {
                     placeholder="Search jobs..."
                     value={searchTerm}
                     onChange={setSearchTerm}
-                    icon={
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                    }
+                    icon={<i className="ri-search-line text-lg text-gray-400"></i>}
                   />
                 </div>
 
@@ -555,10 +552,10 @@ function MyJobsPage() {
             {filteredJobs.length === 0 && (
               <div className="text-center py-12">
                 <div className="text-gray-400 text-6xl mb-4">
-                  {activeTab === "saved" && "💾"}
-                  {activeTab === "active" && "⚡"}
-                  {activeTab === "completed" && "✅"}
-                  {activeTab === "canceled" && "❌"}
+                  {activeTab === "saved" && <i className="ri-bookmark-line"></i>}
+                  {activeTab === "active" && <i className="ri-flashlight-line"></i>}
+                  {activeTab === "completed" && <i className="ri-checkbox-circle-line"></i>}
+                  {activeTab === "canceled" && <i className="ri-close-circle-line"></i>}
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   No {activeTab} jobs found
@@ -576,83 +573,57 @@ function MyJobsPage() {
             )}
           </section>
         </main>
+ {/* Bottom Navigation Bar (Mobile Only) */}
+<div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t shadow-md">
+  <div className="flex justify-around py-3 text-gray-600">
 
-        {/* Footer - Same as EmployeeDashboard */}
-        <footer className="bg-gray-800 text-white py-6">
-          <div className="max-w-7xl mx-auto px-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div>
-                <h3 className="text-lg font-bold mb-4">WorkHub</h3>
-                <p className="text-gray-400">
-                  Connecting skilled workers with local job opportunities.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">For Workers</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Find Jobs
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Applications
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Support</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Help Center
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Contact Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Safety Tips
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Company</h4>
-                <ul className="space-y-2 text-gray-400">
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      About Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Careers
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-white">
-                      Terms of Service
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-              <p>&copy; 2024 WorkHub. All rights reserved.</p>
-            </div>
-          </div>
-        </footer>
+    {/* Dashboard */}
+    <button
+      className="flex flex-col items-center text-sm"
+      onClick={() => router.push("/gigdaddy")}
+    >
+      <i className="ri-home-4-line text-2xl"></i>
+      <span className="text-xs">Home</span>
+    </button>
+
+    {/* My Jobs */}
+    <button
+      className="flex flex-col items-center text-sm text-primary-600"
+      onClick={() => router.push("/gigdaddy/myjobs")}
+    >
+      <i className="ri-briefcase-line text-2xl"></i>
+      <span className="text-xs">My Jobs</span>
+    </button>
+
+    {/* Applications */}
+    <button
+      className="flex flex-col items-center text-sm"
+      onClick={() => router.push("/gigdaddy/applications")}
+    >
+      <i className="ri-file-list-3-line text-2xl"></i>
+      <span className="text-xs">Apply</span>
+    </button>
+
+   {/* Earnings */}
+    <button
+      className="flex flex-col items-center text-sm"
+      onClick={() => router.push("/gigdaddy/profile")}
+    >
+      <i className="ri-money-dollar-circle-line text-2xl"></i>
+      <span className="text-xs">Earnings</span>
+    </button>
+
+    {/* Messages */}
+    <button
+      className="flex flex-col items-center text-sm"
+      onClick={() => router.push("/gigdaddy/messages")}
+    >
+      <i className="ri-message-2-line text-2xl"></i>
+      <span className="text-xs">Messages</span>
+    </button>
+
+  </div>
+</div>
       </div>
 
       {/* Confirmation Modal */}

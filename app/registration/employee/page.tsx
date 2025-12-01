@@ -29,7 +29,7 @@ function Employee() {
             <div className="flex justify-center gap-4 w-full">
 
               {/* Apple Button */}
-              <div className="flex items-center bg-blue gap-3 border border-gray-400 rounded-full px-11 py-2 cursor-pointer hover:bg-gray-50 transition">
+              <div className="flex items-center bg-primary gap-3 border border-gray-400 rounded-full px-11 py-2 cursor-pointer hover:bg-gray-50 transition">
                 <Image
                   src="/apple.png"
                   alt="apple logo"
@@ -116,7 +116,7 @@ function Employee() {
                 <div className="relative w-5 h-5 flex-shrink-0">
                   <input
                     type="checkbox"
-                    className="peer appearance-none w-5 h-5 border border-gray-400 rounded-sm checked:bg-blue-500 checked:border-blue-500 cursor-pointer"
+                    className="peer appearance-none w-5 h-5 border border-gray-400 rounded-sm checked:bg-primary-500 checked:border-blue-500 cursor-pointer"
                   />
                   <span className="absolute inset-0 flex items-center justify-center text-white peer-checked:scale-100 scale-0 transition-transform">
                     ✓
@@ -134,7 +134,7 @@ function Employee() {
                 <div className="relative w-5 h-5 flex-shrink-0">
                   <input
                     type="checkbox"
-                    className="peer appearance-none w-5 h-5 border border-gray-400 rounded-sm checked:bg-blue-500 checked:border-blue-500 cursor-pointer"
+                    className="peer appearance-none w-5 h-5 border border-gray-400 rounded-sm checked:bg-primary-500 checked:border-blue-500 cursor-pointer"
                   />
                   <span className="absolute inset-0 flex items-center justify-center text-white peer-checked:scale-100 scale-0 transition-transform">
                     ✓
@@ -152,7 +152,7 @@ function Employee() {
 
             {/* Create Account Button */}
             <button
-              className="w-full max-w-xs bg-blue-600 text-white py-3 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors duration-200"
+              className="w-full max-w-xs bg-primary-600 text-white py-3 rounded-lg text-sm font-semibold hover:bg-primary-700 transition-colors duration-200"
             >
               Create Account
             </button>

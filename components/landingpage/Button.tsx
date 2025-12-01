@@ -25,7 +25,7 @@ function Button({
   const baseClasses = 'font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variantClasses = {
-    primary: 'bg-blue-500 hover:bg-blue-600 text-white focus:ring-blue-500 shadow-sm',
+    primary: 'bg-primary-500 hover:bg-primary-600 text-white focus:ring-blue-500 shadow-sm',
     secondary: 'bg-gray-500 hover:bg-gray-600 text-white focus:ring-gray-500 shadow-sm',
     danger: 'bg-red-500 hover:bg-red-600 text-white focus:ring-red-500 shadow-sm',
     warning: 'bg-yellow-500 hover:bg-yellow-600 text-white focus:ring-yellow-500 shadow-sm',

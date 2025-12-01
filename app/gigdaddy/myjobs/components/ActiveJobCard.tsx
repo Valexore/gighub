@@ -26,7 +26,7 @@ interface ActiveJobCardProps {
 function ActiveJobCard({ job, onViewDetails }: ActiveJobCardProps) {
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'In Progress': return 'bg-blue-100 text-blue-800';
+      case 'In Progress': return 'bg-primary-100 text-blue-800';
       case 'Starting Soon': return 'bg-yellow-100 text-yellow-800';
       default: return 'bg-gray-100 text-gray-800';
     }
@@ -34,9 +34,9 @@ function ActiveJobCard({ job, onViewDetails }: ActiveJobCardProps) {
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'In Progress': return '⚡';
-      case 'Starting Soon': return '⏰';
-      default: return '📋';
+        case 'In Progress': return <i className="ri-flashlight-line"></i>;
+        case 'Starting Soon': return <i className="ri-time-line"></i>;
+        default: return <i className="ri-briefcase-line"></i>;
     }
   };
 
@@ -54,7 +54,7 @@ function ActiveJobCard({ job, onViewDetails }: ActiveJobCardProps) {
           className="w-full h-40 object-cover rounded-t-lg"
         />
         <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(job.status)}`}>
-          {getStatusIcon(job.status)} {job.status}
+           {getStatusIcon(job.status)} {job.status}
         </div>
       </div>
 
@@ -64,10 +64,10 @@ function ActiveJobCard({ job, onViewDetails }: ActiveJobCardProps) {
           title={job.title}
           subtitle={
             <div className="flex flex-col gap-2 mt-2">
-              <span className="text-green-600 font-bold text-lg">{job.salary}</span>
+              <span className="text-primary-600 font-bold text-lg">{job.salary}</span>
               <span className="text-gray-600 text-sm">{job.subtitle}</span>
               <div className="flex items-center justify-between">
-                <span className="text-blue-600 text-xs bg-blue-50 px-2 py-1 rounded-full">
+                <span className="text-blue-600 text-xs bg-primary-50 px-2 py-1 rounded-full">
                   {job.category}
                 </span>
                 <span className="text-gray-400 text-xs">
@@ -92,7 +92,7 @@ function ActiveJobCard({ job, onViewDetails }: ActiveJobCardProps) {
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div 
-                className="bg-green-500 h-2 rounded-full transition-all duration-300" 
+                className="bg-primary-500 h-2 rounded-full transition-all duration-300" 
                 style={{ width: `${job.progress}%` }}
               />
             </div>
@@ -101,7 +101,7 @@ function ActiveJobCard({ job, onViewDetails }: ActiveJobCardProps) {
 
         <div className="flex items-center justify-between text-sm text-gray-500">
           <div className="flex items-center">
-            <span className="mr-2">📍</span>
+              <i className="ri-map-pin-line mr-2"></i>
             {job.location}
           </div>
           <div>

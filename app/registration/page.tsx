@@ -60,7 +60,7 @@ export default function Registration() {
 
                         {/* Create Account Button */}
                         <button
-                            className="w-full max-w-xs bg-blue-600 text-white py-3 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors duration-200"
+                            className="w-full max-w-xs bg-primary-600 text-white py-3 rounded-lg text-sm font-semibold hover:bg-primary-700 transition-colors duration-200"
                         >
                             Create Account
                         </button>
