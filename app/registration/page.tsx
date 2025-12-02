@@ -1,11 +1,25 @@
+"use client";
 
-import Image from "next/image"
-import { UserLock } from 'lucide-react';
-import { UserStar } from 'lucide-react';
+import Image from "next/image";
+import { UserLock, UserStar } from "lucide-react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Registration() {
+    const [role, setRole] = useState<"gigboss" | "gigdaddy" | null>(null);
+    const router = useRouter();
+
+    const handleSubmit = () => {
+        if (role === "gigboss") {
+            router.push("/registration/employer");
+        } else if (role === "gigdaddy") {
+            router.push("/registration/employee");
+        } else {
+            alert("Please select a role first.");
+        }
+    };
+
     return (
-        // let the user choose if gigdaddy or gigboss
         <main>
             <nav className="w-full bg-white flex items-center h-[5rem] justify-between px-6 py-3">
                 <div className="flex shrink-0 items-center">
@@ -18,54 +32,81 @@ export default function Registration() {
                     />
                 </div>
             </nav>
-            <div className="">
-                <div className="w-[60%] mx-[auto] flex flex-col items-center mt-[6rem] gap-2">
-                    <header className="text-[2rem] mb-[1rem]">Join as a client or freelancer</header>
+
+            <div>
+                <div className="w-[60%] mx-auto flex flex-col items-center mt-[6rem] gap-2">
+                    <header className="text-[2rem] mb-[1rem]">
+                        Join as a client or freelancer
+                    </header>
+
                     <div className="flex gap-5 flex-wrap">
-                        {/* Card 1 */}
-                        <div className="border border-gray-400 rounded-lg p-6 flex-1 min-w-[300px] shadow-md hover:shadow-lg transition duration-300">
+                        {/* Card 1 - GigBoss */}
+                        <div
+                            className="border border-gray-400 rounded-lg p-6 flex-1 min-w-[300px] shadow-md hover:shadow-lg transition duration-300 cursor-pointer"
+                            onClick={() => setRole("gigboss")}
+                        >
                             <div className="flex justify-between items-center mb-4">
                                 <UserStar className="w-8 h-8" />
-                                <input type="checkbox" className="w-6 h-6 accent-blue-500" />
+                                <input
+                                    type="checkbox"
+                                    checked={role === "gigboss"}
+                                    readOnly
+                                    className="w-6 h-6 accent-blue-500"
+                                />
                             </div>
 
-                            {/* Two-line text */}
-                            <p className="text-[1.25rem] text-black">
-                                I'm a GigBoss,
-                            </p>
-                            <p className="text-[1.25rem] text-black">
-                                hiring for a task
-                            </p>
+                            <p className="text-[1.25rem] text-black">I'm a GigBoss,</p>
+                            <p className="text-[1.25rem] text-black">hiring for a task</p>
                         </div>
 
-                        {/* Card 2 */}
-                        <div className="border border-gray-400  rounded-lg p-6 flex-1 min-w-[300px] shadow-md hover:shadow-lg transition duration-300">
+                        {/* Card 2 - GigDaddy */}
+                        <div
+                            className="border border-gray-400 rounded-lg p-6 flex-1 min-w-[300px] shadow-md hover:shadow-lg transition duration-300 cursor-pointer"
+                            onClick={() => setRole("gigdaddy")}
+                        >
                             <div className="flex justify-between items-center mb-4">
-                                <UserLock className="w-8 h-8 " />
-                                <input type="checkbox" className="w-6 h-6 accent-primary-500" />
+                                <UserLock className="w-8 h-8" />
+                                <input
+                                    type="checkbox"
+                                    checked={role === "gigdaddy"}
+                                    readOnly
+                                    className="w-6 h-6 accent-primary-500"
+                                />
                             </div>
 
-                            {/* Two-line text */}
-                            <p className="text-[1.25rem]">
-                                I'm a GigDaddy,
-                            </p>
-                            <p className="text-[1.25rem]">
-                                looking for a gig
-                            </p>
+                            <p className="text-[1.25rem]">I'm a GigDaddy,</p>
+                            <p className="text-[1.25rem]">looking for a gig</p>
                         </div>
                     </div>
 
-
                     <div className="flex flex-col items-center gap-3 mt-6">
+                        {
+                            role === null ? (
+                                <button
+                                    disabled
+                                    className="w-full max-w-xs bg-primary-200 text-white py-3 rounded-lg text-sm font-semibold hover:bg-primary-700 transition-colors duration-200"
+                                >
+                                    Create Account
+                                </button>
+                            ) : (
+                                role === "gigboss" ? (
+                                    <button
+                                        onClick={handleSubmit}
+                                        className="w-full max-w-xs bg-primary-600 text-white py-3 rounded-lg text-sm font-semibold hover:bg-primary-700 transition-colors duration-200"
+                                    >
+                                        Join as a GigBoss
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={handleSubmit}
+                                        className="w-full max-w-xs bg-primary-600 text-white py-3 rounded-lg text-sm font-semibold hover:bg-primary-700 transition-colors duration-200"
+                                    >
+                                        Join as a GigDaddy
+                                    </button>
+                                )
+                            )
+                        }
 
-                        {/* Create Account Button */}
-                        <button
-                            className="w-full max-w-xs bg-primary-600 text-white py-3 rounded-lg text-sm font-semibold hover:bg-primary-700 transition-colors duration-200"
-                        >
-                            Create Account
-                        </button>
-
-                        {/* Login Text */}
                         <p className="text-gray-700 text-sm">
                             Already have an account?{" "}
                             <span className="text-blue-600 font-medium cursor-pointer hover:underline">
@@ -76,5 +117,5 @@ export default function Registration() {
                 </div>
             </div>
         </main>
-    )
+    );
 }
