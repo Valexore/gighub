@@ -2,35 +2,67 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
+import { 
+  BrushCleaning, 
+  ShoppingBag, 
+  Drill, 
+  Truck as TruckElectric,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  LogOut,
+  Mail,
+  User,
+  ChevronDown,
+  ChevronUp
+} from 'lucide-react'
 
 function CategorySelection() {
   const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-  // Categories - cleaning is available, others are coming soon
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false)
+  const [userData, setUserData] = useState({
+    name: "John Doe",
+    email: "john.doe@example.com",
+    avatarUrl: null as string | null 
+  })
+
   const categories = [
     {
       id: 'cleaning',
       name: "Cleaning Services",
       description: "Professional cleaning for homes and businesses",
-      icon: "🧹",
+      icon: BrushCleaning,
       subServices: [
-        "House Cleaning",
-        "Office Cleaning", 
+        "Power Wash",
         "Deep Cleaning",
-        "Window Cleaning",
-        "Carpet Cleaning",
-        "Commercial Cleaning"
+        "Dish Washer",
+        "Laundry",
+        "Cleaning Assistant"
       ],
       available: true,
-      popular: true
+    },
+    {
+      id: 'ecom',
+      name: "E-commerce",
+      description: "Online retail and fulfillment operations",
+      icon: ShoppingBag,
+      subServices: [
+        "Packaging",
+        "Labeling",
+        "Inventory Management",
+        "Shipping/Dropping off",
+        "Restocking",
+        "Order Processing"
+      ],
+      available: true,
     },
     {
       id: 'construction',
       name: "Construction",
       description: "Building, renovation and repair work",
-      icon: "👷",
+      icon: Drill,
       subServices: [
         "General Labor",
         "Carpentry",
@@ -39,37 +71,20 @@ function CategorySelection() {
         "Plumbing"
       ],
       available: false,
-      comingSoon: true
     },
     {
-      id: 'food',
-      name: "Food & Beverage",
-      description: "Culinary and hospitality positions",
-      icon: "🍽️",
+      id: 'delivery',
+      name: "Delivery",
+      description: "Transportation and logistics services",
+      icon: TruckElectric,
       subServices: [
-        "Barista",
-        "Wait Staff",
-        "Kitchen Staff",
+        "Local Delivery",
+        "Package Delivery",
         "Food Delivery",
-        "Bakery Assistant"
+        "Express Courier",
+        "Bulk Delivery"
       ],
       available: false,
-      comingSoon: true
-    },
-    {
-      id: 'landscaping',
-      name: "Landscaping",
-      description: "Outdoor maintenance and gardening",
-      icon: "🌱",
-      subServices: [
-        "Lawn Care",
-        "Gardening",
-        "Tree Service",
-        "Irrigation",
-        "Hardscaping"
-      ],
-      available: false,
-      comingSoon: true
     }
   ]
 
@@ -84,14 +99,19 @@ function CategorySelection() {
       router.push('/registration/accountVerification/faceVerification')
     }
   }
-   const handleBack = () => {
+
+  const handleBack = () => {
     router.back()
+  }
+
+    const handleLogout = () => {
+    console.log('Logging out...')
+    router.push('/login')
+    setShowProfileDropdown(false)
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-
-
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
@@ -103,7 +123,82 @@ function CategorySelection() {
           </p>
         </div>
 
-        {/* Category Selection Cards in ROW layout */}
+        <div className="fixed top-4 right-4 z-50">
+        <div className="relative">
+          <button
+            onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+            className="flex items-center space-x-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow p-2 pr-4"
+          >
+            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center border-2 border-blue-200">
+              {userData.avatarUrl ? (
+                <img 
+                  src={userData.avatarUrl} 
+                  alt="Profile" 
+                  className="w-full h-full rounded-full object-cover"
+                />
+              ) : (
+                <User className="w-6 h-6 text-blue-600" />
+              )}
+            </div>
+            <span className="font-medium text-gray-700 truncate max-w-[120px]">
+              {userData.name.split(' ')[0]}
+            </span>
+            {showProfileDropdown ? (
+              <ChevronUp className="w-4 h-4 text-gray-500" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-gray-500" />
+            )}
+          </button>
+
+          {/* Dropdown Menu */}
+          {showProfileDropdown && (
+            <>
+              {/* Backdrop */}
+              <div 
+                className="fixed inset-0"
+                onClick={() => setShowProfileDropdown(false)}
+              />
+              
+              {/* Dropdown Content */}
+              <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <div className="p-4 border-b border-gray-100">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center border-2 border-blue-200">
+                      {userData.avatarUrl ? (
+                        <img 
+                          src={userData.avatarUrl} 
+                          alt="Profile" 
+                          className="w-full h-full rounded-full object-cover"
+                        />
+                      ) : (
+                        <User className="w-7 h-7 text-blue-600" />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">{userData.name}</h3>
+                      <div className="flex items-center text-sm text-gray-600 mt-1">
+                        <Mail className="w-4 h-4 mr-1" />
+                        <span className="truncate">{userData.email}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-2">
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center w-full px-3 py-2 text-left text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
+                  >
+                    <LogOut className="w-4 h-4 mr-3" />
+                    <span className="font-medium">Logout</span>
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {categories.map((category) => {
             const isSelected = selectedCategory === category.id
@@ -131,9 +226,7 @@ function CategorySelection() {
                       : 'border-gray-300'
                   }`}>
                     {isSelected && (
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                      </svg>
+                      <Check className="w-4 h-4 text-white" />
                     )}
                   </div>
                 )}
@@ -142,7 +235,9 @@ function CategorySelection() {
                 <div className={`flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center mb-4 ${
                   !isAvailable ? 'bg-gray-200' : isSelected ? 'bg-primary-100' : 'bg-gray-100'
                 }`}>
-                  <span className="text-3xl">{category.icon}</span>
+                  <category.icon className={`w-8 h-8 ${
+                    !isAvailable ? 'text-gray-400' : isSelected ? 'text-primary-600' : 'text-gray-600'
+                  }`} />
                 </div>
 
                 {/* Text Content */}
@@ -183,41 +278,18 @@ function CategorySelection() {
                     )}
                   </div>
                 </div>
-
-                {/* Badges */}
-                <div className="mt-4">
-                  {category.popular && isAvailable && (
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clipRule="evenodd" />
-                      </svg>
-                      Most Popular
-                    </span>
-                  )}
-                  {category.comingSoon && !isAvailable && (
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-200 text-gray-600">
-                      Coming Soon
-                    </span>
-                  )}
-                </div>
               </div>
             )
           })}
         </div>
 
-
-
-        {/* Action Buttons */}
         <div className="max-w-4xl mx-auto pt-8 border-t border-gray-200">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            {/* Left: Back Button */}
             <button
               onClick={handleBack}
               className="flex items-center text-gray-600 hover:text-gray-800 font-medium transition-colors text-base"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-              </svg>
+              <ChevronLeft className="w-5 h-5 mr-2" />
               Back
             </button>
 
@@ -232,14 +304,7 @@ function CategorySelection() {
                 }`}
               >
                 Next
-                <svg 
-                  className="w-5 h-5 ml-2 inline-block" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                </svg>
+                <ChevronRight className="w-5 h-5 ml-2 inline-block" />
               </button>
             </div>
           </div>
