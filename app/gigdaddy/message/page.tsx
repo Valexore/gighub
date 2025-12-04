@@ -558,7 +558,7 @@ function EmployeeMessage() {
         </main>
 
         {/* Mobile Bottom Navigation - NOT blurred */}
-        <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t shadow-md">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-[60] bg-white border-t shadow-md">
           <div className="flex justify-around py-3 text-gray-600">
             <button
               className="flex flex-col items-center text-sm"
