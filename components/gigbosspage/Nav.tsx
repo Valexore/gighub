@@ -1,3 +1,5 @@
+'use client'
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -21,6 +23,8 @@ import {
 } from "lucide-react"
 
 export default function Nav() {
+    const router = useRouter();
+
     return (
         <nav className="bg-white sticky top-0 z-50">
             <div className="">
@@ -44,8 +48,8 @@ export default function Nav() {
                                 <SelectContent>
                                     <SelectGroup>
                                         <SelectLabel>Post a gig</SelectLabel>
-                                        <SelectItem value="apple">Post a gig</SelectItem>
-                                        <SelectItem value="blueberry">Search for a GigDaddy</SelectItem>
+                                        <SelectItem value="apple" onClick={() => router.push('/gigbosses/postgig')}>Post a gig</SelectItem>
+                                        <SelectItem value="blueberry" onClick={() => router.push('/gigbosses/search')}>Search for a GigDaddy</SelectItem>
                                         <SelectItem value="grapes">Gigdaddy you've hired</SelectItem>
                                         <SelectItem value="pineapple">Gigdaddy you've saved</SelectItem>
                                     </SelectGroup>
