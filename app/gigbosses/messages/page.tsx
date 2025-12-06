@@ -8,7 +8,7 @@ export default function Message() {
             <Nav />
 
             {/* Content under nav should fill remaining height */}
-            <div className="flex flex-1 overflow-hidden">
+            <div className="flex flex-1 overflow-hidden mt-3">
                 <MessageNav />
                 <MessagePage />
             </div>

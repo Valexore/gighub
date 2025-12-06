@@ -46,7 +46,7 @@ export default function MessageNav() {
     ];
 
     return (
-        <main className="w-[25%] ml-10 bg-gray-200 px-7 py-5 rounded-lg h-full flex flex-col">
+        <main className="w-[25%] ml-10 bg-gray-100 px-7 py-5 rounded-lg h-full flex flex-col">
             {/* Header */}
             <div className="flex justify-between mb-3">
                 <span className="text-[2rem] font-semibold">Messages</span>
@@ -75,7 +75,7 @@ export default function MessageNav() {
                 {messages.map((item, index) => (
                     <div
                         key={index}
-                        className="flex items-center gap-4 bg-white rounded-sm p-3 cursor-pointer hover:bg-gray-100 transition"
+                        className="flex items-center gap-4 rounded-sm p-3 cursor-pointer hover:bg-white transition"
                     >
                         {/* Profile */}
                         <div className="relative">
