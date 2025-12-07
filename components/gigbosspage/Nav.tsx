@@ -46,18 +46,17 @@ export default function Nav() {
     }, [])
 
     return (
-        <nav className="bg-white sticky top-0 z-50">
+        <nav className="bg-white fixed top-0 md:top-0 z-50 w-full">
             <div className="">
-                <div className="flex items-center justify-between w-full h-20 px-10">
+                <div className="flex items-center justify-between md:justify-between w-full h-16 md:h-20 px-4 md:px-10">
                     {/* left Side */}
                     <div className="flex gap-8">
                         <div className="shrink-0 flex items-center">
                             <Link href="/gigbosses">
-                                <Image src="/gigdaddy-logo.png" alt="GigDaddy Logo" height={150} width={150} />
+                                <Image src="/gigdaddy-logo.png" alt="GigDaddy Logo" height={120} width={120} className="md:h-[150px] md:w-[150px]" />
                             </Link>
                         </div>
-
-                        <div className="flex items-center gap-6">
+                        <div className="hidden md:flex items-center gap-6">
                             <button onClick={() => router.push('/gigbosses')} className="underline-hover">Home</button>
                             <button onClick={() => router.push('/gigbosses/browse')} className="underline-hover">Manage Gig</button>
                             <button className="underline-hover">Manage Earnings</button>
@@ -68,14 +67,20 @@ export default function Nav() {
 
                     <div className="flex items-center gap-5 relative">
 
-                        {/* Search */}
-                        <InputGroup>
-                            <InputGroupInput placeholder="Search..." />
-                            <InputGroupAddon>
+                        {/* Search - Hidden on mobile */}
+                        <div className="hidden md:block">
+                            <InputGroup>
+                                <InputGroupInput placeholder="Search..." />
+                                <InputGroupAddon>
+                                    <SearchIcon />
+                                </InputGroupAddon>
+                                <InputGroupAddon align="inline-end">12 results</InputGroupAddon>
+                            </InputGroup>
+                        </div>
+
+                        <div className="md:block float-right">
                                 <SearchIcon />
-                            </InputGroupAddon>
-                            <InputGroupAddon align="inline-end">12 results</InputGroupAddon>
-                        </InputGroup>
+                        </div>
 
                         {/* Notification Dropdown */}
                         <div className="relative" ref={notifRef}>
@@ -90,7 +95,7 @@ export default function Nav() {
                             </button>
 
                             {openNotif && (
-                                <div className="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-xl p-4 border animate-fade-in">
+                                <div className="absolute bottom-full md:top-full right-0 mb-2 md:mt-2 w-64 bg-white shadow-lg rounded-xl p-4 border animate-fade-in">
                                     <p className="text-sm font-semibold mb-2">Notifications</p>
 
                                     <div className="flex flex-col gap-3">
@@ -123,7 +128,7 @@ export default function Nav() {
                             </button>
 
                             {openProfile && (
-                                <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-xl p-3 border animate-fade-in">
+                                <div className="absolute bottom-full md:top-full right-0 mb-2 md:mt-2 w-48 bg-white shadow-lg rounded-xl p-3 border animate-fade-in">
                                     <div className="flex flex-col text-sm">
 
                                         <button className="text-left py-2 px-2 rounded hover:bg-gray-100">Manage Profile</button>
