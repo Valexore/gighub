@@ -59,7 +59,7 @@ export default function Nav() {
                         <div className="hidden md:flex items-center gap-6">
                             <button onClick={() => router.push('/gigbosses')} className="underline-hover">Home</button>
                             <button onClick={() => router.push('/gigbosses/browse')} className="underline-hover">Manage Gig</button>
-                            <button className="underline-hover">Manage Earnings</button>
+                            <button onClick={() => router.push('/gigbosses/wallet')} className="underline-hover">Wallet</button>
                             <button onClick={() => router.push('/gigbosses/profile')}className="underline-hover">Profile</button>
                             <button onClick={() => router.push('/gigbosses/messages')} className="underline-hover">Messages</button>
                         </div>
