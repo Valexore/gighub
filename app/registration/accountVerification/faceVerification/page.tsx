@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { 
+import {
   Camera,
   Zap,
   CheckCircle,
@@ -29,9 +29,9 @@ function FaceVerification() {
   const [userData, setUserData] = useState({
     name: "John Doe",
     email: "john.doe@example.com",
-    avatarUrl: null as string | null 
+    avatarUrl: null as string | null
   })
-  
+
   const [verificationStep, setVerificationStep] = useState<'ready' | 'capturing' | 'processing' | 'success' | 'failed'>('ready')
   const [capturedImage, setCapturedImage] = useState<string | null>(null)
   const [verificationTips, setVerificationTips] = useState<string[]>([
@@ -45,7 +45,7 @@ function FaceVerification() {
     if (verificationStep === 'ready') {
       startCamera()
     }
-    
+
     return () => {
       stopCamera()
     }
@@ -53,14 +53,14 @@ function FaceVerification() {
 
   const startCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { 
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
           facingMode: 'user',
           width: { ideal: 1280 },
           height: { ideal: 720 }
-        } 
+        }
       })
-      
+
       if (videoRef.current) {
         videoRef.current.srcObject = stream
       }
@@ -85,28 +85,28 @@ function FaceVerification() {
   const capturePhoto = () => {
     if (videoRef.current && canvasRef.current) {
       setVerificationStep('capturing')
-      
+
       const video = videoRef.current
       const canvas = canvasRef.current
       const context = canvas.getContext('2d')
-    
+
       canvas.width = video.videoWidth
       canvas.height = video.videoHeight
-      
+
       context?.drawImage(video, 0, 0, canvas.width, canvas.height)
-      
+
       const imageDataUrl = canvas.toDataURL('image/png')
       setCapturedImage(imageDataUrl)
-      
+
       stopCamera()
-      
+
       // Simulate processing
       setVerificationStep('processing')
       setTimeout(() => {
         // For demo, 80% chance of success
         const isSuccess = Math.random() > 0.2
         setVerificationStep(isSuccess ? 'success' : 'failed')
-        
+
         if (isSuccess) {
           setVerificationTips([
             "Face verification successful!",
@@ -170,7 +170,7 @@ function FaceVerification() {
     }
   }
 
-    const handleLogout = () => {
+  const handleLogout = () => {
     console.log('Logging out...')
     router.push('/login')
     setShowProfileDropdown(false)
@@ -179,88 +179,89 @@ function FaceVerification() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <div className="w-full h-1 bg-gray-200">
-        <div 
-          className="h-full bg-primary-600 transition-all duration-300" 
+        <div
+          className="h-full bg-primary-600 transition-all duration-300"
           style={{ width: '50%' }}
         />
       </div>
 
-            <div className="fixed top-4 right-4 z-50">
-              <div className="relative">
-                <button
-                  onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                  className="flex items-center space-x-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow p-2 pr-4"
-                >
-                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center border-2 border-blue-200">
-                    {userData.avatarUrl ? (
-                      <img 
-                        src={userData.avatarUrl} 
-                        alt="Profile" 
-                        className="w-full h-full rounded-full object-cover"
-                      />
-                    ) : (
-                      <User className="w-6 h-6 text-blue-600" />
-                    )}
-                  </div>
-                  <span className="font-medium text-gray-700 truncate max-w-[120px]">
-                    {userData.name.split(' ')[0]}
-                  </span>
-                  {showProfileDropdown ? (
-                    <ChevronUp className="w-4 h-4 text-gray-500" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-gray-500" />
-                  )}
-                </button>
-      
-                {/* Dropdown Menu */}
-                {showProfileDropdown && (
-                  <>
-                    {/* Backdrop */}
-                    <div 
-                      className="fixed inset-0"
-                      onClick={() => setShowProfileDropdown(false)}
-                    />
-                    
-                    {/* Dropdown Content */}
-                    <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                      <div className="p-4 border-b border-gray-100">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center border-2 border-blue-200">
-                            {userData.avatarUrl ? (
-                              <img 
-                                src={userData.avatarUrl} 
-                                alt="Profile" 
-                                className="w-full h-full rounded-full object-cover"
-                              />
-                            ) : (
-                              <User className="w-7 h-7 text-blue-600" />
-                            )}
-                          </div>
-                          <div>
-                            <h3 className="font-semibold text-gray-900">{userData.name}</h3>
-                            <div className="flex items-center text-sm text-gray-600 mt-1">
-                              <Mail className="w-4 h-4 mr-1" />
-                              <span className="truncate">{userData.email}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-      
-                      <div className="p-2">
-                        <button
-                          onClick={handleLogout}
-                          className="flex items-center w-full px-3 py-2 text-left text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
-                        >
-                          <LogOut className="w-4 h-4 mr-3" />
-                          <span className="font-medium">Logout</span>
-                        </button>
+      <div className="fixed top-4 right-4 z-50">
+        <div className="relative">
+          <button
+            onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+            className="flex items-center space-x-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow p-2 pr-4"
+          >
+            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center border-2 border-blue-200">
+              {userData.avatarUrl ? (
+                <img
+                  src={userData.avatarUrl}
+                  alt="Profile"
+                  className="w-full h-full rounded-full object-cover"
+                />
+              ) : (
+                <User className="w-6 h-6 text-blue-600" />
+              )}
+            </div>
+            <span className="font-medium text-gray-700 truncate max-w-[120px]">
+              {userData.name.split(' ')[0]}
+            </span>
+            {showProfileDropdown ? (
+              <ChevronUp className="w-4 h-4 text-gray-500" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-gray-500" />
+            )}
+          </button>
+
+          {/* Dropdown Menu */}
+          {showProfileDropdown && (
+            <>
+              {/* Backdrop */}
+              <div
+                className="fixed inset-0"
+                onClick={() => setShowProfileDropdown(false)}
+              />
+
+              {/* Dropdown Content */}
+              <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <div className="p-4 border-b border-gray-100">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center border-2 border-blue-200">
+                      {userData.avatarUrl ? (
+                        <img
+                          src={userData.avatarUrl}
+                          alt="Profile"
+                          className="w-full h-full rounded-full object-cover"
+                        />
+                      ) : (
+                        <User className="w-7 h-7 text-blue-600" />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900">{userData.name}</h3>
+                      <div className="flex items-center text-sm text-gray-600 mt-1">
+                        <Mail className="w-4 h-4 mr-1" />
+                        <span className="truncate">{userData.email}</span>
                       </div>
                     </div>
-                  </>
-                )}
-              </div>
-            </div>
+                  </div>
+                </div>
 
+                <div className="p-2">
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center w-full px-3 py-2 text-left text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
+                  >
+                    <LogOut className="w-4 h-4 mr-3" />
+                    <span className="font-medium">Logout</span>
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+        {/* Start here */}
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
@@ -280,13 +281,12 @@ function FaceVerification() {
           {/* Status Indicator */}
           <div className="flex items-center justify-center mb-8">
             <div className="relative">
-              <div className={`w-24 h-24 rounded-full border-4 flex items-center justify-center ${
-                verificationStep === 'ready' ? 'border-blue-200 bg-blue-50' :
+              <div className={`w-24 h-24 rounded-full border-4 flex items-center justify-center ${verificationStep === 'ready' ? 'border-blue-200 bg-blue-50' :
                 verificationStep === 'capturing' ? 'border-yellow-200 bg-yellow-50' :
-                verificationStep === 'processing' ? 'border-purple-200 bg-purple-50' :
-                verificationStep === 'success' ? 'border-green-200 bg-green-50' :
-                'border-red-200 bg-red-50'
-              }`}>
+                  verificationStep === 'processing' ? 'border-purple-200 bg-purple-50' :
+                    verificationStep === 'success' ? 'border-green-200 bg-green-50' :
+                      'border-red-200 bg-red-50'
+                }`}>
                 {verificationStep === 'ready' && (
                   <Camera className="w-12 h-12 text-blue-600" />
                 )}
@@ -341,7 +341,7 @@ function FaceVerification() {
                   <span className="text-gray-400">No image captured</span>
                 </div>
               )}
-              
+
               {verificationStep === 'processing' && (
                 <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
                   <div className="text-center">
@@ -365,7 +365,7 @@ function FaceVerification() {
                 Capture Photo
               </button>
             )}
-            
+
             {(verificationStep === 'failed' || verificationStep === 'success') && (
               <button
                 onClick={retryVerification}
@@ -408,11 +408,10 @@ function FaceVerification() {
             <button
               onClick={handleNext}
               disabled={verificationStep !== 'success'}
-              className={`px-8 py-3 rounded-lg font-medium transition-all flex items-center ${
-                verificationStep === 'success'
-                  ? 'bg-primary-600 hover:bg-primary-700 text-white shadow-sm hover:shadow'
-                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-              }`}
+              className={`px-8 py-3 rounded-lg font-medium transition-all flex items-center ${verificationStep === 'success'
+                ? 'bg-primary-600 hover:bg-primary-700 text-white shadow-sm hover:shadow'
+                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                }`}
             >
               Complete Setup
               <ChevronRight className="w-5 h-5 ml-2" />
@@ -421,7 +420,7 @@ function FaceVerification() {
         </div>
 
         <div className="mt-8 text-center text-sm text-gray-500 max-w-2xl mx-auto">
-          <p>Having trouble with face verification? 
+          <p>Having trouble with face verification?
             <button className="text-primary-600 hover:text-primary-700 font-medium ml-1">
               Get Help
             </button>

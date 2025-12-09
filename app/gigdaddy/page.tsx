@@ -53,7 +53,7 @@ function EmployeeDashboard() {
       icon: Zap,
       color: "bg-primary-600",
       iconColor: "text-white",
-      onClick: () => router.push("/gigdaddy/myjobs"),
+      onClick: () => router.push("/gigdaddy/instant-gig"),
       description: "Apply to recommended jobs instantly",
     },
     {

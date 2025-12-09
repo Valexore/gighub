@@ -14,9 +14,10 @@ export default function GigPost() {
     const router = useRouter();
     const [selected, setSelected] = useState<number | null>(null);
     const [selectedCat, setSelectedCat] = useState("")
-    const [progress, setProgress] = useState(20);
+    const [progress, setProgress] = useState(10);
     const [title, setTitle] = useState("");
     const [pricing, setPricing] = useState("per_item");
+    const [postingType, setPostingType] = useState("instant")
     const [totalPrice, setTotalPrice] = useState(0)
 
     const [value, setValue] = useState<string>("");
@@ -27,6 +28,10 @@ export default function GigPost() {
 
     const [responseValue, setResponseValue] = useState<string>("");
     const [responseCollapsed, setResponseCollapsed] = useState(false);
+
+    const [openSchedule, setOpenSchedule] = useState(false);
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+    const [selectedTime, setSelectedTime] = useState<string>("");
 
     const sizeOptions = [
         {
@@ -95,19 +100,19 @@ export default function GigPost() {
     const isPackaging = selectedSkill === "Packaging/Labeling";
 
     useEffect(() => {
-    if (isPackaging) {
-        setPricing("per_item");
-    } else {
-        setPricing("hourly");
-    }
-}, [selectedSkill]);
+        if (isPackaging) {
+            setPricing("per_item");
+        } else {
+            setPricing("hourly");
+        }
+    }, [selectedSkill]);
 
     return (
         <div className="flex flex-col">
             <div className="mt-[5rem]">
 
                 {/* ----------------------- STEP 1 ----------------------- */}
-                {progress === 20 && (
+                {progress === 10 && (
                     <div className="flex">
                         <div className="w-[50%] p-10 pl-[16rem] flex flex-col gap-5">
                             <div className="flex gap-5">
@@ -123,7 +128,7 @@ export default function GigPost() {
                         <div className="w-[50%] pt-3 pl-8">
                             <div className="grid w-full max-w-sm items-center mt-[5rem] gap-3 mb-[2rem]">
                                 <label htmlFor="title">Write a title to your gig post</label>
-                                <Input className="border-black" id="title" type="text" />
+                                <Input onChange={(e) => setTitle(e.target.value)} className="border-black" id="title" type="text" />
                             </div>
 
                             <div className="flex flex-col gap-3">
@@ -139,7 +144,7 @@ export default function GigPost() {
                 )}
 
                 {/* ----------------------- STEP 2 ----------------------- */}
-                {progress === 40 && (
+                {progress === 30 && (
                     <div className="flex">
                         <div className="w-[50%] p-10 pl-[16rem] flex flex-col gap-5">
                             <div className="flex gap-5">
@@ -181,7 +186,7 @@ export default function GigPost() {
                 )}
 
                 {/* ----------------------- STEP 3 ----------------------- */}
-                {progress === 60 && (
+                {progress === 50 && (
                     <div className="flex">
                         <div className="w-[50%] p-10 pl-[16rem] flex flex-col gap-5">
                             <div className="flex gap-5">
@@ -274,7 +279,7 @@ export default function GigPost() {
                 )}
 
                 {/* ----------------------- STEP 4 ----------------------- */}
-                {progress === 80 && (
+                {progress === 70 && (
                     <div className="flex ">
                         <div className="w-[50%] p-10 pl-[16rem] flex flex-col gap-5">
                             <div className="flex gap-5">
@@ -574,11 +579,11 @@ export default function GigPost() {
                 )}
 
                 {/* ----------------------- STEP 5 ----------------------- */}
-                {progress === 100 && (
+                {progress === 90 && (
                     <div className="flex">
                         <div className="w-[50%] p-10 pl-[16rem] flex flex-col gap-5">
                             <div className="flex gap-5">
-                                <span>5/5</span>
+                                <span>5/6</span>
                                 <span>Gig post</span>
                             </div>
                             <header className="text-[2.1rem] font-semibold mr-[1rem] leading-none">
@@ -602,6 +607,92 @@ export default function GigPost() {
                     </div>
                 )}
 
+                {/* ----------------------- STEP 6 ----------------------- */}
+                {progress === 100 && (
+                    <div className="flex">
+                        <div className="w-[50%] p-10 pl-[16rem] flex flex-col gap-5">
+                            <div className="flex gap-5">
+                                <span>6/6</span>
+                                <span>Gig post</span>
+                            </div>
+
+                            <header className="text-[2.1rem] font-semibold leading-none">
+                                Review & Publish Your Gig
+                            </header>
+
+                            <p>Make sure everything is correct before posting.</p>
+                        </div>
+
+                        <div className="w-[50%] pt-[5rem] pl-8 pr-40">
+                            <div className="flex flex-col gap-4">
+                                <p className="text-lg font-medium">Summary</p>
+
+                                <div className="border p-4 rounded-lg">
+                                    <p><b>Title:</b> {title}</p>
+                                    <p><b>Category:</b> {selectedCat}</p>
+                                    <p><b>Task:</b> {selectedSkills[0]}</p>
+                                    <p><b>Pricing:</b> {pricing}</p>
+                                    <p><b>Total Price:</b> ₱{totalPrice}</p>
+                                    <p><b>Regular Gig:</b> {responseValue}</p>
+                                </div>
+
+                                <div>
+                                    <RadioGroup
+                                        onValueChange={(value) => setPostingType(value)}
+                                        defaultValue="instant"
+                                        className="flex pr-40 gap-4"
+                                    >
+
+                                        {/* Instant */}
+                                        <Label
+                                            htmlFor="instant"
+                                            className="flex flex-col items-start gap-4 border rounded-sm p-5 w-full cursor-pointer">
+                                            <div className="flex justify-between w-full items-center">
+                                                <i className="text-[1.5rem] ri-flashlight-line"></i>
+
+                                                <RadioGroupItem
+                                                    value="instant"
+                                                    id="instant"
+                                                    className="h-6 w-6"
+                                                />
+                                            </div>
+
+                                            <p className="text-[1.1rem] font-[500]">Instant Post</p>
+                                        </Label>
+
+
+                                        {/* Scheduled */}
+                                        <Label
+                                            htmlFor="scheduled"
+                                            className="flex flex-col items-start gap-4 border rounded-sm p-5 w-full cursor-pointer">
+                                            <div className="flex justify-between w-full items-center">
+                                                <i className="text-[1.5rem] ri-calendar-todo-line"></i>
+                                                <RadioGroupItem
+                                                    value="scheduled"
+                                                    id="scheduled"
+                                                    className="h-6 w-6"
+                                                />
+                                            </div>
+                                            <p className="text-[1.1rem] font-[500]">Scheduled</p>
+                                        </Label>
+
+
+                                    </RadioGroup>
+
+                                    <div className="mt-3 mb-4">
+                                        {postingType === "instant" ? (
+                                            <p className="text-gray-600">This will find the nearest available gigdaddy in your area</p>
+                                        ) : (
+                                            <p className="text-gray-600">Select the date for your gig and choose from the available applications on GigDaddy.</p>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+
 
             </div>
 
@@ -613,26 +704,42 @@ export default function GigPost() {
 
                     <div className="mx-[6rem] flex justify-between">
                         <Button
-                            size="lg"
-                            className="text-blue-600 hover:bg-blue-400 hover:text-black"
                             variant="outline"
-                            disabled={progress === 20}
-                            onClick={() => setProgress(progress - 20)}
+                            disabled={progress === 10}
+                            onClick={() => setProgress(p => {
+                                const steps = [10, 30, 50, 70, 90, 100];
+                                const prevIdx = steps.indexOf(p) - 1;
+                                return prevIdx >= 0 ? steps[prevIdx] : p;
+                            })}
                         >
                             Back
                         </Button>
 
                         {progress === 100 ? (
-                            <Button
-                                onClick={() => router.push('/gigbosses/')}
-                                className="bg-blue-600 hover:bg-blue-300 hover:text-black"
-                                size="lg"
-                            >
-                                Submit
-                            </Button>
+                            postingType === "instant" ? (
+                                <Button
+                                    onClick={() => router.push('/gigbosses/')}
+                                    className="bg-blue-600 hover:bg-blue-300 hover:text-black"
+                                    size="lg"
+                                >
+                                    Find Gigdaddy
+                                </Button>
+                            ) : (
+                                <Button
+                                    className="bg-blue-600 hover:bg-blue-300 hover:text-black"
+                                    size="lg"
+                                    onClick={() => setOpenSchedule(true)}
+                                >
+                                    Select Schedule
+                                </Button>
+                            )
                         ) : (
                             <Button
-                                onClick={() => setProgress(progress + 20)}
+                                onClick={() => setProgress(p => {
+                                    const steps = [10, 30, 50, 70, 90, 100];
+                                    const nextIdx = steps.indexOf(p) + 1;
+                                    return nextIdx < steps.length ? steps[nextIdx] : p;
+                                })}
                                 className="bg-blue-600 hover:bg-blue-300 hover:text-black"
                                 size="lg"
                                 disabled={progress === 100}
@@ -643,6 +750,58 @@ export default function GigPost() {
                     </div>
                 </div>
             </div>
+            {openSchedule && (
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-xl p-6 w-[90%] max-w-md shadow-xl">
+
+                        {/* HEADER */}
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="text-xl font-semibold">Select Date & Time</h2>
+                            <button onClick={() => setOpenSchedule(false)}>
+                                ✕
+                            </button>
+                        </div>
+
+                        {/* CALENDAR */}
+                        <div className="mb-4">
+                            <label className="font-medium mb-1 block">Choose a date</label>
+                            <input
+                                type="date"
+                                className="border rounded-lg p-2 w-full"
+                                onChange={(e) => setSelectedDate(new Date(e.target.value))}
+                            />
+                        </div>
+
+                        {/* TIME PICKER */}
+                        <div className="mb-6">
+                            <label className="font-medium mb-1 block">Choose a time</label>
+                            <input
+                                type="time"
+                                className="border rounded-lg p-2 w-full"
+                                onChange={(e) => setSelectedTime(e.target.value)}
+                            />
+                        </div>
+
+                        {/* BUTTONS */}
+                        <div className="flex justify-end gap-3">
+                            <Button variant="outline" onClick={() => setOpenSchedule(false)}>
+                                Cancel
+                            </Button>
+
+                            <Button
+                                className="bg-blue-600 text-white"
+                                onClick={() => {
+                                    setOpenSchedule(false);
+                                    router.push("/gigbosses/browse/my-gigs")
+                                }}
+                            >
+                                Confirm
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 }
