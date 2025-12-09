@@ -83,7 +83,7 @@ export default function SavedGigDaddy() {
     return (
         <main>
             <Nav />
-            <div className="flex flex-col mx-23 pt-10">
+            <div className="flex flex-col mx-23 mt-10 pt-10">
                 <div className="flex mt-6">
                     <SideNav />
                     <div className="w-[75%]">

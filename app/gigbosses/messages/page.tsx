@@ -19,7 +19,7 @@ export default function Message() {
         <main className="flex flex-col h-screen">
             <Nav />
             
-            <div className="flex flex-1 overflow-hidden mt-3">
+            <div className="flex flex-1 overflow-hidden mt-20">
                 <MessageNav onSelectContact={setSelectedContact} />
                 <MessagePage contact={selectedContact} />
             </div>

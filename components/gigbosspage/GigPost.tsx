@@ -3,13 +3,14 @@ import { Input } from "@/components/ui/input"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button";
 import { BrushCleaning, Drill, TruckElectric, ShoppingBag, DiamondPlus } from 'lucide-react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import { useRouter } from "next/navigation";
 
 export default function GigPost() {
+
     const router = useRouter();
     const [selected, setSelected] = useState<number | null>(null);
     const [selectedCat, setSelectedCat] = useState("")
@@ -86,9 +87,20 @@ export default function GigPost() {
         { id: 4, name: "Delivery", icon: <TruckElectric />, disabled: true },
     ];
 
-    const ecomSkills = ["Packaging", "Labeling", "Inventory Management", "Shipping/Dropping off", "Restocking", "Order Processing"]
+    const ecomSkills = ["Packaging/Labeling", "Inventory Management", "Shipping/Dropping off", "Restocking", "Order Processing"]
     const cleaningSkills = ["Power Wash", "Deep Cleaning", "Dish Washer", "Laundry", "Cleaning Assistant"]
     const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+
+    const selectedSkill = selectedSkills[0] || "";
+    const isPackaging = selectedSkill === "Packaging/Labeling";
+
+    useEffect(() => {
+    if (isPackaging) {
+        setPricing("per_item");
+    } else {
+        setPricing("hourly");
+    }
+}, [selectedSkill]);
 
     return (
         <div className="flex flex-col">
@@ -218,9 +230,15 @@ export default function GigPost() {
                                                 <p
                                                     key={index}
                                                     onClick={() => {
-                                                        setSelectedSkills(prev => [...prev, skill]);
+                                                        if (selectedSkills.length === 0) {
+                                                            setSelectedSkills([skill]);   // Allow only 1
+                                                        }
                                                     }}
-                                                    className="flex gap-2 px-3 py-1 bg-gray-200 rounded-full text-sm cursor-pointer hover:bg-gray-300"
+                                                    className={`flex gap-2 px-3 py-1 rounded-full text-sm
+                                                            ${selectedSkills.length === 0
+                                                            ? "cursor-pointer bg-gray-200 hover:bg-gray-300"
+                                                            : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                                        }`}
                                                 >
                                                     <span>{skill}</span> <DiamondPlus strokeWidth={0.5} size={20} />
                                                 </p>
@@ -234,9 +252,15 @@ export default function GigPost() {
                                                 <p
                                                     key={index}
                                                     onClick={() => {
-                                                        setSelectedSkills(prev => [...prev, skill]);
+                                                        if (selectedSkills.length === 0) {
+                                                            setSelectedSkills([skill]);   // Allow only 1
+                                                        }
                                                     }}
-                                                    className="flex items-center gap-2 px-3 py-1 bg-gray-200 rounded-full text-sm cursor-pointer hover:bg-gray-300"
+                                                    className={`flex gap-2 px-3 py-1 rounded-full text-sm
+                                                            ${selectedSkills.length === 0
+                                                            ? "cursor-pointer bg-gray-200 hover:bg-gray-300"
+                                                            : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                                        }`}
                                                 >
                                                     <span>{skill}</span> <DiamondPlus strokeWidth={0.5} size={20} />
                                                 </p>
@@ -272,15 +296,18 @@ export default function GigPost() {
                                 {/* Per Item */}
                                 <Label
                                     htmlFor="per_item"
-                                    className="flex flex-col items-start gap-4 border border-black rounded-sm p-5 cursor-pointer w-full"
+                                    className={`flex flex-col items-start gap-4 border rounded-sm p-5 w-full
+                                    ${!isPackaging ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+                                `}
                                 >
                                     <div className="flex justify-between w-full items-center">
                                         <i className="text-[1.5rem] ri-list-check"></i>
 
                                         <RadioGroupItem
-                                            value="per_item"
-                                            id="per_item"
+                                            value="hourly"
+                                            id="hourly"
                                             className="h-6 w-6"
+                                            disabled={isPackaging}
                                         />
                                     </div>
 
@@ -291,7 +318,9 @@ export default function GigPost() {
                                 {/* Hourly */}
                                 <Label
                                     htmlFor="hourly"
-                                    className="flex flex-col items-start  gap-4 border border-black rounded-sm p-5 cursor-pointer w-full"
+                                    className={`flex flex-col items-start gap-4 border rounded-sm p-5 w-full
+                                        ${isPackaging ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+                                    `}
                                 >
                                     <div className="flex justify-between w-full items-center">
                                         <i className="text-[1.5rem] ri-time-line"></i>
@@ -395,49 +424,49 @@ export default function GigPost() {
 
                                 <div className="flex justify-between">
                                     <RadioGroup
-                                    value={value}
-                                    onValueChange={(val) => {
-                                        setValue(val);
-                                        setCollapsed(true); // collapse when selecting
-                                    }}
-                                    className=""
-                                >
-                                    {collapsed ? (
-                                        selectedOption && (
-                                            <div className="p-3">
-                                                <div className="flex items-center mb-1 gap-3">
-                                                    <RadioGroupItem className="border-blue-500" value={selectedOption.value} id={selectedOption.id} />
-                                                    <Label htmlFor={selectedOption.id} className="text-[1rem] font-[500]">
-                                                        {selectedOption.value}
-                                                    </Label>
-                                                </div>
-                                                <p className="pl-7 text-gray-600">{selectedOption.description}</p>
-                                            </div>
-                                        )
-                                    ) : (
-                                        sizeOptions.map((opt) => (
-                                            <div key={opt.id} className="flex gap-1 flex-col p-1">
-                                                <div className="flex items-center gap-3">
-                                                    <RadioGroupItem className="border-blue-500 " value={opt.value} id={opt.id} />
-                                                    <Label className="text-[1rem] font-[500]" htmlFor={opt.id}>
-                                                        {opt.value}
-                                                    </Label>
-                                                </div>
-                                                <p className="pl-7 text-gray-600">{opt.description}</p>
-                                            </div>
-                                        ))
-                                    )}
-                                </RadioGroup>
-
-                                {collapsed && (
-                                    <Button
-                                        variant="outline"
-                                        className="rounded-full"
-                                        onClick={() => setCollapsed(false)}
+                                        value={value}
+                                        onValueChange={(val) => {
+                                            setValue(val);
+                                            setCollapsed(true); // collapse when selecting
+                                        }}
+                                        className=""
                                     >
-                                        <i className="ri-quill-pen-ai-fill"></i>
-                                    </Button>
-                                )}
+                                        {collapsed ? (
+                                            selectedOption && (
+                                                <div className="p-3">
+                                                    <div className="flex items-center mb-1 gap-3">
+                                                        <RadioGroupItem className="border-blue-500" value={selectedOption.value} id={selectedOption.id} />
+                                                        <Label htmlFor={selectedOption.id} className="text-[1rem] font-[500]">
+                                                            {selectedOption.value}
+                                                        </Label>
+                                                    </div>
+                                                    <p className="pl-7 text-gray-600">{selectedOption.description}</p>
+                                                </div>
+                                            )
+                                        ) : (
+                                            sizeOptions.map((opt) => (
+                                                <div key={opt.id} className="flex gap-1 flex-col p-1">
+                                                    <div className="flex items-center gap-3">
+                                                        <RadioGroupItem className="border-blue-500 " value={opt.value} id={opt.id} />
+                                                        <Label className="text-[1rem] font-[500]" htmlFor={opt.id}>
+                                                            {opt.value}
+                                                        </Label>
+                                                    </div>
+                                                    <p className="pl-7 text-gray-600">{opt.description}</p>
+                                                </div>
+                                            ))
+                                        )}
+                                    </RadioGroup>
+
+                                    {collapsed && (
+                                        <Button
+                                            variant="outline"
+                                            className="rounded-full"
+                                            onClick={() => setCollapsed(false)}
+                                        >
+                                            <i className="ri-quill-pen-ai-fill"></i>
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
 
