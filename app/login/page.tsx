@@ -15,15 +15,28 @@ export default function LoginPage() {
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 
-	const handleLogin = (e: React.FormEvent) => {
-		e.preventDefault();
-		if (!email || !password) {
-			setError("Please enter both email and password.");
-			return;
-		}
-		// Simulate login success
-		router.push("/");
-	};
+const credentials: Record<
+  string,
+  { password: string; redirect: string }
+> = {
+  "jayaruntalanb22@gmail.com": { password: "pass1", redirect: "/registration/categorySelection" },
+  "matt@gmail.com": { password: "pass2", redirect: "/gigbosses" },
+};
+
+
+const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const user = credentials[email];
+
+    if (!user || user.password !== password) {
+        setError("Invalid email or password.");
+        return;
+    }
+
+    router.push(user.redirect);
+};
+
 
 	return (
 		<main>

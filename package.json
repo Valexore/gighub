@@ -25,6 +25,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.555.0",
+    "maplibre": "^0.0.1-security",
     "maplibre-gl": "^5.14.0",
     "next": "^16.0.8",
     "react": "19.2.0",

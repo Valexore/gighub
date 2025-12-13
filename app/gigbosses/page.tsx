@@ -87,7 +87,7 @@ export default function Bosses() {
       button: "Add Details",
       details: "Details",
       icon: <Package  className="w-5 h-5" color="blue" />,
-      color: "bg-gray-400",
+      color: "bg-primary-50",
     },
     {
       id: 2,
@@ -95,7 +95,7 @@ export default function Bosses() {
       button: "Add Budget",
       details: "Add your budget to continue",
       icon: <Hammer  className="w-5 h-5" color="blue" />,
-      color: "bg-gray-400",
+      color: "bg-primary-50",
     },
     {
       id: 3,
@@ -103,7 +103,7 @@ export default function Bosses() {
       button: "Add Contact",
       details: "Add your contact to continue",
       icon: <BrushCleaning className="w-5 h-5" color="blue"/>,
-      color: "bg-gray-400",
+      color: "bg-primary-50",
     },
     {
       id: 4,
@@ -111,7 +111,7 @@ export default function Bosses() {
       button: "Add Skills",
       details: "Add the skills you need to continue",
       icon: <BrushCleaning  className="w-5 h-5" color="blue"/>,
-      color: "bg-gray-400",
+      color: "bg-primary-50",
     },
   ];
 

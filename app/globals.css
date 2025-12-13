@@ -17,6 +17,7 @@
   .text-primary-900 { color: var(--color-primary-900); }
   .text-primary-950 { color: var(--color-primary-950); }
 
+  .bg-primary {background-color: var(--color-primary-600); }
   .bg-primary-50 { background-color: var(--color-primary-50); }
   .bg-primary-100 { background-color: var(--color-primary-100); }
   .bg-primary-200 { background-color: var(--color-primary-200); }
