@@ -15,6 +15,7 @@ import {
   User,
   ChevronDown,
   ChevronUp,
+  ChefHat,
 } from "lucide-react";
 
 function CategorySelection() {
@@ -59,16 +60,16 @@ function CategorySelection() {
       available: true,
     },
     {
-      id: "digital",
-      name: "Digital Creative",
+      id: "Catering",
+      name: "Catering Services",
       description: "Building, renovation and repair work",
-      icon: MonitorCheck,
+      icon: ChefHat,
       subServices: [
-        "General Labor",
-        "Carpentry",
-        "Painting",
-        "Electrical",
-        "Plumbing",
+        "Cleanup Crew",
+        "Table Setting",
+        "Equipment Setup",
+        "Venue Coordination",
+        "Inventory Control",
       ],
       available: false,
     },

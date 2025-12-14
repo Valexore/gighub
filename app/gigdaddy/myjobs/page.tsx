@@ -331,7 +331,7 @@ function EmployeeMyJobs() {
               </div>
 
               <div className="flex items-center gap-3">
-                <button className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 flex items-center gap-2">
+                <button onClick={() => router.push("/gigdaddy/myCurrentJob")} className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 flex items-center gap-2">
                   <Eye className="w-5 h-5" />
                   Check My Current Job
                 </button>

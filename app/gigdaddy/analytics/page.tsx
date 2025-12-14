@@ -442,8 +442,9 @@ function EmployeeAnalytics() {
                   onClick={handleWithdraw}
                   className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 flex items-center gap-2"
                 >
+                  
                   <PhilippinePeso className="w-4 h-4" />
-                  Withdraw Funds
+                  Transfer Funds
                 </button>
               </div>
             </div>

@@ -46,7 +46,6 @@ function EmployeeProfile() {
       {
         id: 1,
         title: "House Chores",
-        description: "Completed training in house chores area. Demonstrated proficiency in cleaning, organization, and maintenance tasks.",
         imageUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&h=500&fit=crop",
         unlocked: true,
         dateUnlocked: "2024-01-15"
@@ -54,7 +53,6 @@ function EmployeeProfile() {
       {
         id: 2,
         title: "Catering Service",
-        description: "Completed training in catering area. Certified in food preparation, serving, and event management.",
         imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=500&fit=crop",
         unlocked: false,
         dateUnlocked: null
