@@ -2,7 +2,7 @@
 import { Input } from "@/components/ui/input"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button";
-import { BrushCleaning, Drill, TruckElectric, ShoppingBag, DiamondPlus } from 'lucide-react';
+import { BrushCleaning, Drill, TruckElectric, ShoppingBag, DiamondPlus, ChefHat } from 'lucide-react';
 import { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -86,9 +86,9 @@ export default function GigPost() {
 
 
     const categories = [
-        { id: 1, name: "Cleaning", icon: <BrushCleaning />, disabled: false },
+        { id: 1, name: "House Chores", icon: <BrushCleaning />, disabled: false },
         { id: 3, name: "E-commerce", icon: <ShoppingBag />, disabled: false },
-        { id: 2, name: "Construction", icon: <Drill />, disabled: true },
+        { id: 2, name: "Catering Service", icon: <ChefHat />, disabled: false },
         { id: 4, name: "Delivery", icon: <TruckElectric />, disabled: true },
     ];
 
