@@ -145,7 +145,7 @@ export default function Bosses() {
   const gigDaddy = [
     {
       id: 1,
-      name: "Ivanotch Babida",
+      name: "Matt Perez",
       location: "Manila",
       jobSuccess: 100,
       jobs: "56",
@@ -218,7 +218,7 @@ export default function Bosses() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-                Welcome back, Ivanotch 👋
+                Welcome back, Matt 👋
               </h1>
               <p className="text-gray-600 mt-2">
                 Ready to find the perfect GigDaddy for your tasks?
